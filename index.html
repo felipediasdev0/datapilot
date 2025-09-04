@@ -1,0 +1,1244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Pilot - Plano Vitalício</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/ucide/font.css">
+  <style>
+    /* Reset e estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    :root {
+      --dark-bg: #0f172a;
+      --dark-card: #1e293b;
+      --dark-border: #334155;
+      --accent: #6366f1;
+      --accent-hover: #4f46e5;
+      --accent-secondary: #8b5cf6;
+      --text-primary: #f1f5f9;
+      --text-secondary: #cbd5e1;
+      --gradient: linear-gradient(135deg, #6366f1, #8b5cf6);
+      --gradient-secondary: linear-gradient(135deg, #8b5cf6, #ec4899);
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-primary);
+      background-color: var(--dark-bg);
+      overflow-x: hidden;
+    }
+    
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+    
+    h1, h2, h3, h4 {
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 1rem;
+      font-weight: 700;
+    }
+    
+    /* Animações */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes glow {
+      0% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
+      50% { box-shadow: 0 0 20px rgba(99, 102, 241, 0.8); }
+      100% { box-shadow: 0 0 5px rgba(99, 102, 241, 0.5); }
+    }
+    
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Cabeçalho */
+    header {
+      background: rgba(30, 41, 59, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 1.5rem 0;
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.8s ease-out;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    header .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    header h1 {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+    
+    header h1 span {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    header p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 10rem 0 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -100px;
+      right: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.1);
+      filter: blur(60px);
+      z-index: -1;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      border-radius: 50%;
+      background: rgba(139, 92, 246, 0.1);
+      filter: blur(60px);
+      z-index: -1;
+      animation: float 8s ease-in-out infinite;
+    }
+    
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeIn 1s ease-out;
+    }
+    
+    .hero h2 {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      color: var(--text-secondary);
+    }
+    
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      max-width: 900px;
+      margin: 3rem auto;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+      transform: perspective(1000px) rotateX(5deg);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+      animation: fadeIn 1.2s ease-out, glow 3s infinite;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .video-container:hover {
+      transform: perspective(1000px) rotateX(0deg);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+    
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 16px;
+    }
+    
+    .video-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+      z-index: 2;
+    }
+    
+    .video-overlay:hover {
+      background: rgba(0, 0, 0, 0.1);
+    }
+    
+    .play-button {
+      width: 80px;
+      height: 80px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      font-size: 2rem;
+      animation: pulse 2s infinite;
+      box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
+    }
+    
+    /* Galeria de Screenshots com Ícones */
+    .screenshots {
+      padding: 6rem 0;
+      background: rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .screenshots::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .screenshot-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    
+    .screenshot-card {
+      background: var(--dark-card);
+      border-radius: 16px;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeIn 0.8s ease-out forwards;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .screenshot-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .screenshot-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .screenshot-card:nth-child(1) { animation-delay: 0.2s; }
+    .screenshot-card:nth-child(2) { animation-delay: 0.4s; }
+    .screenshot-card:nth-child(3) { animation-delay: 0.6s; }
+    
+    .screenshot-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    }
+    
+    /* Ícones */
+    .screenshot-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    
+    .screenshot-icon i {
+      font-size: 3.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: float 4s ease-in-out infinite;
+      transition: filter 0.3s ease;
+    }
+    
+    /* Título com gradiente */
+    .screenshot-caption h4 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      transition: filter 0.3s ease;
+    }
+    
+    /* Descrição */
+    .screenshot-caption p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    /* Glow no hover */
+    .screenshot-card:hover .screenshot-icon i,
+    .screenshot-card:hover .screenshot-caption h4 {
+      filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
+    }
+    
+    /* Características */
+    .features {
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    .features::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    
+    .feature-card {
+      background: var(--dark-card);
+      text-align: center;
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeIn 0.8s ease-out forwards;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: var(--gradient);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+    
+    .feature-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    .feature-card:nth-child(1) { animation-delay: 0.1s; }
+    .feature-card:nth-child(2) { animation-delay: 0.2s; }
+    .feature-card:nth-child(3) { animation-delay: 0.3s; }
+    .feature-card:nth-child(4) { animation-delay: 0.4s; }
+    
+    .feature-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+    }
+    
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+      animation: float 4s ease-in-out infinite;
+    }
+    
+    .feature-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    
+    .feature-card p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    
+    /* Planos */
+    .planos {
+      padding: 6rem 0;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+    }
+    
+    .planos::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .plano-card {
+      background: var(--dark-card);
+      border-radius: 20px;
+      padding: 3.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      max-width: 550px;
+      margin: 3rem auto 0;
+      border: 1px solid var(--dark-border);
+      position: relative;
+      overflow: hidden;
+      animation: pulse 4s infinite ease-in-out, fadeIn 1s ease-out;
+    }
+    
+    .plano-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient);
+    }
+    
+    .plano-card h3 {
+      font-size: 2rem;
+      color: var(--text-primary);
+      margin-bottom: 1.5rem;
+    }
+    
+    .preco {
+      font-size: 2.8rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin: 2rem 0;
+      display: block;
+      text-shadow: 0 0 10px rgba(99, 102, 241, 0.3);
+    }
+    
+    .preco span {
+      font-size: 1.2rem;
+      font-weight: normal;
+      color: var(--text-secondary);
+    }
+    
+    .plano-card ul {
+      list-style: none;
+      margin: 2.5rem 0;
+      text-align: left;
+    }
+    
+    .plano-card li {
+      padding: 0.8rem 0;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      border-bottom: 1px solid var(--dark-border);
+      position: relative;
+      padding-left: 2.5rem;
+    }
+    
+    .plano-card li:last-child {
+      border-bottom: none;
+    }
+    
+    .plano-card li::before {
+      content: '✔';
+      color: var(--accent);
+      position: absolute;
+      left: 0;
+      font-weight: bold;
+    }
+    
+    /* Garantia */
+    .guarantee {
+      background: rgba(99, 102, 241, 0.1);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-top: 2rem;
+      border: 1px solid rgba(99, 102, 241, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+    
+    .guarantee i {
+      font-size: 2rem;
+      color: var(--accent);
+    }
+    
+    .guarantee p {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    
+    /* Botões */
+    .btn-link {
+      display: inline-block;
+      background: var(--gradient);
+      color: white;
+      padding: 1.2rem 2.5rem;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: 0.5s;
+    }
+    
+    .btn-link:hover::before {
+      left: 100%;
+    }
+    
+    .btn-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 25px rgba(99, 102, 241, 0.4);
+    }
+    
+    .btn-link:active {
+      transform: translateY(0);
+      box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-whatsapp {
+      background: #25D366;
+      box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+    }
+    
+    .btn-whatsapp:hover {
+      box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4);
+    }
+    
+    /* Feedbacks */
+    .feedbacks {
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    .feedbacks::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .feedback-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+      margin-top: 3rem;
+    }
+    
+    .feedback-card {
+      background: var(--dark-card);
+      padding: 2.5rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      animation: fadeIn 0.8s ease-out forwards;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .feedback-card:nth-child(1) { animation-delay: 0.2s; }
+    .feedback-card:nth-child(2) { animation-delay: 0.4s; }
+    .feedback-card:nth-child(3) { animation-delay: 0.6s; }
+    
+    .feedback-card::before {
+      content: '"';
+      font-size: 5rem;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      opacity: 0.1;
+      color: var(--accent);
+      font-family: serif;
+    }
+    
+    .feedback-card p {
+      font-style: italic;
+      margin-bottom: 1.5rem;
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      line-height: 1.7;
+    }
+    
+    .feedback-card span {
+      font-weight: 600;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+    
+    .client-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 1rem;
+      font-weight: bold;
+      color: white;
+    }
+    
+    .client-info {
+      display: flex;
+      align-items: center;
+      margin-top: 1.5rem;
+    }
+    
+    /* Formulário */
+    .feedback-form {
+      padding: 6rem 0;
+      background: rgba(0, 0, 0, 0.2);
+      position: relative;
+    }
+    
+    .feedback-form::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .feedback-form form {
+      max-width: 600px;
+      margin: 3rem auto 0;
+    }
+    
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 100%;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 1.5rem;
+      border: 1px solid var(--dark-border);
+      border-radius: 12px;
+      font-family: 'Inter', sans-serif;
+      background: var(--dark-card);
+      color: var(--text-primary);
+      transition: all 0.3s ease;
+    }
+    
+    .feedback-form input:focus,
+    .feedback-form textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+    }
+    
+    .feedback-form textarea {
+      min-height: 180px;
+      resize: vertical;
+    }
+    
+    /* FAQ Section */
+    .faq {
+      padding: 6rem 0;
+      position: relative;
+    }
+    
+    .faq::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    .faq-grid {
+      max-width: 800px;
+      margin: 3rem auto 0;
+    }
+    
+    .faq-item {
+      background: var(--dark-card);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+    
+    .faq-question {
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    
+    .faq-question:hover {
+      background: rgba(255, 255, 255, 0.05);
+    }
+    
+    .faq-question i {
+      transition: transform 0.3s ease;
+    }
+    
+    .faq-answer {
+      padding: 0 1.5rem;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      color: var(--text-secondary);
+    }
+    
+    .faq-item.active .faq-question i {
+      transform: rotate(180deg);
+    }
+    
+    .faq-item.active .faq-answer {
+      max-height: 300px;
+      padding: 0 1.5rem 1.5rem;
+    }
+    
+    /* Rodapé */
+    footer {
+      background: var(--dark-card);
+      text-align: center;
+      padding: 3rem 0;
+      position: relative;
+    }
+    
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--gradient);
+    }
+    
+    footer p {
+      color: var(--text-secondary);
+    }
+    
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    
+    .social-links a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      text-decoration: none;
+      transition: transform 0.3s ease;
+    }
+    
+    .social-links a:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Back to Top Button */
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: var(--gradient);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+    }
+    
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .back-to-top:hover {
+      transform: translateY(-3px);
+    }
+    
+    /* Responsividade */
+    @media (max-width: 768px) {
+      .hero h2 {
+        font-size: 2.5rem;
+      }
+      
+      .hero p {
+        font-size: 1.1rem;
+      }
+      
+      .plano-card {
+        padding: 2rem;
+      }
+      
+      .preco {
+        font-size: 2.2rem;
+      }
+      
+      section {
+        padding: 4rem 0;
+      }
+      
+      .feature-card, .feedback-card {
+        padding: 2rem;
+      }
+      
+      .video-container {
+        transform: perspective(1000px) rotateX(0deg);
+      }
+      
+      .play-button {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+      }
+    }
+    
+    /* Utilitários */
+    .text-center {
+      text-align: center;
+    }
+    
+    .mt-2 {
+      margin-top: 2rem;
+    }
+    
+    .mb-2 {
+      margin-bottom: 2rem;
+    }
+    
+    /* Scroll personalizado */
+    ::-webkit-scrollbar {
+      width: 10px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--dark-bg);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent);
+      border-radius: 5px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+  <!-- Cabeçalho -->
+  <header>
+    <div class="container">
+      <div>
+        <h1>Data <span>Pilot</span></h1>
+        <p>O futuro das planilhas.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h2>Modernize sua gestão de dados</h2>
+        <p>Assista ao vídeo para ver o Data Pilot em ação e descubra como podemos transformar sua produtividade</p>
+        
+        <div class="video-container">
+          <div class="video-overlay" id="videoOverlay">
+            <div class="play-button">
+              <i class="fas fa-play"></i>
+            </div>
+          </div>
+          <video id="demoVideo" poster="https://placehold.co/900x506/1e293b/6366f1?text=Data+Pilot" style="background-color: #1e293b;">
+            <source src="demo.mp4" type="video/mp4">
+            Seu navegador não suporta o elemento de vídeo.
+          </video>
+        </div>
+        
+        <a href="#planos" class="btn-link">Quero o Data Pilot Agora</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Cards com Ícones -->
+  <section class="screenshots">
+    <div class="container">
+      <h2 class="text-center">Recursos Visuais</h2>
+      <p class="text-center mt-2">Interface intuitiva e recursos poderosos</p>
+      
+      <div class="screenshot-grid">
+        <div class="screenshot-card">
+          <div class="screenshot-icon">
+            <i class="fas fa-tachometer-alt"></i>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Dashboard Principal</h4>
+            <p>Visualize todos os seus dados em um único lugar</p>
+          </div>
+        </div>
+        
+        <div class="screenshot-card">
+          <div class="screenshot-icon">
+            <i class="fas fa-chart-bar"></i>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Relatórios Personalizáveis</h4>
+            <p>Crie relatórios detalhados com poucos cliques</p>
+          </div>
+        </div>
+        
+        <div class="screenshot-card">
+          <div class="screenshot-icon">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <div class="screenshot-caption">
+            <h4>Análises Avançadas</h4>
+            <p>Obtenha insights profundos sobre seus dados</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Características -->
+  <section class="features">
+    <div class="container">
+      <h2 class="text-center">Recursos Incríveis</h2>
+      <p class="text-center mt-2">Descubra tudo que o Data Pilot pode fazer por você</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-bolt"></i>
+          </div>
+          <h3>Rápido e Eficiente</h3>
+          <p>Processamento de dados em tempo real com tecnologia avançada</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-sync"></i>
+          </div>
+          <h3>Atualizações Constantes</h3>
+          <p>Novos recursos regularmente sem custo adicional</p>
+        </div>
+        
+        <div class="feature-card">
+          <div class="feature-icon">
+            <i class="fas fa-mobile-alt"></i>
+          </div>
+          <h3>Design Responsivo</h3>
+          <p>Funciona perfeitamente em qualquer dispositivo</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Planos -->
+  <section class="planos" id="planos">
+    <div class="container">
+      <h2 class="text-center">Adquira Agora</h2>
+      <p class="text-center mt-2">Invista em produtividade com nosso plano vitalício</p>
+      
+      <div class="plano-card">
+        <h3>Plano Vitalício</h3>
+        <p class="preco">R$ 200,00 <span>/ acesso único</span></p>
+        <ul>
+          <li>Pagamento único</li>
+          <li>Acesso vitalício</li>
+          <li>Todas as futuras atualizações</li>
+          <li>Suporte prioritário</li>
+          <li>Templates exclusivos</li>
+          <li>Integração com outras ferramentas</li>
+          <li>Treinamento em vídeo</li>
+        </ul>
+        
+        <div class="guarantee">
+          <i class="fas fa-shield-alt"></i>
+          <p>Garantia de 7 dias ou seu dinheiro de volta</p>
+        </div>
+        
+        <a href="https://wa.me/553499576480?text=Ol%C3%A1%2C%20quero%20adquirir%20o%20Plano%20Vital%C3%ADcio%20agora." 
+           target="_blank" 
+           class="btn-link btn-whatsapp mt-2">
+          <i class="fab fa-whatsapp"></i> Comprar Agora
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Feedbacks -->
+  <section class="feedbacks">
+    <div class="container">
+      <h2 class="text-center">O que nossos clientes dizem</h2>
+      <p class="text-center mt-2">Veja a experiência de quem já usa o Data Pilot</p>
+      
+      <div class="feedback-grid">
+        <div class="feedback-card">
+          <p>“O Data Pilot mudou a forma como gerencio meus projetos. Simples e poderoso! A curva de aprendizado foi mínima e os resultados foram imediatos.”</p>
+          <div class="client-info">
+            <div class="client-avatar">A</div>
+            <span>Ana Souza, Gerente de Projetos</span>
+          </div>
+        </div>
+        
+        <div class="feedback-card">
+          <p>“Valeu cada centavo, economizei horas de trabalho e tenho total controle agora. As automatizações me poupam pelo menos 10 horas por semana.”</p>
+          <div class="client-info">
+            <div class="client-avatar">C</div>
+            <span>Carlos Lima, Analista de Dados</span>
+          </div>
+        </div>
+        
+        <div class="feedback-card">
+          <p>“Interface moderna e fácil de usar. Recomendo para qualquer equipe. A integração com outras ferramentas foi um diferencial para nós.”</p>
+          <div class="client-info">
+            <div class="client-avatar">F</div>
+            <span>Fernanda Alves, Diretora de TI</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="faq">
+    <div class="container">
+      <h2 class="text-center">Perguntas Frequentes</h2>
+      <p class="text-center mt-2">Tire suas dúvidas sobre o Data Pilot</p>
+      
+      <div class="faq-grid">
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Como faço para adquirir o Data Pilot?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Basta clicar no botão "Comprar Agora" e você será direcionado para o WhatsApp para finalizar a compra. Aceitamos PIX.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Preciso de conhecimento técnico para usar?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Não! O Data Pilot foi desenvolvido para ser intuitivo. Além disso, oferecemos treinamento em vídeo e suporte para ajudar você.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>Como recebo as atualizações futuras?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Como cliente vitalício, você receberá todas as atualizações gratuitamente por e-mail, sem necessidade de pagar nada adicional.</p>
+          </div>
+        </div>
+        
+        <div class="faq-item">
+          <div class="faq-question">
+            <span>E se eu não gostar do produto?</span>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Oferecemos garantia de 7 dias. Se você não ficar satisfeito, devolvemos seu dinheiro sem complicações.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Formulário -->
+  <section class="feedback-form">
+    <div class="container">
+      <h2 class="text-center">Deixe seu feedback</h2>
+      <p class="text-center mt-2">Sua opinião é importante para nós</p>
+      
+      <form action="https://formsubmit.com/felipediasdev00@gmail.com" method="POST">
+        <input type="text" name="nome" placeholder="Seu nome" required>
+        <input type="email" name="email" placeholder="Seu e-mail" required>
+        <textarea name="mensagem" placeholder="Escreva seu feedback..." required></textarea>
+        <button type="submit" class="btn-link">Enviar Feedback</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+  </a>
+
+  <script>
+    // Animação de aparição ao scroll
+    document.addEventListener('DOMContentLoaded', function() {
+      const animatedElements = document.querySelectorAll('.screenshot-card, .feature-card, .feedback-card');
+      
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+      
+      animatedElements.forEach(element => {
+        element.style.animationPlayState = 'paused';
+        observer.observe(element);
+      });
+      
+      // Video play functionality
+      const videoOverlay = document.getElementById('videoOverlay');
+      const demoVideo = document.getElementById('demoVideo');
+      
+      if (videoOverlay && demoVideo) {
+        videoOverlay.addEventListener('click', function() {
+          demoVideo.play();
+          videoOverlay.style.display = 'none';
+        });
+      }
+      
+      // FAQ accordion functionality
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        
+        question.addEventListener('click', () => {
+          item.classList.toggle('active');
+        });
+      });
+      
+      // Back to top button
+      const backToTopButton = document.querySelector('.back-to-top');
+      
+      window.addEventListener('scroll', () => {
+        if (window.pageYOffset > 300) {
+          backToTopButton.classList.add('visible');
+        } else {
+          backToTopButton.classList.remove('visible');
+        }
+      });
+      
+      backToTopButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
