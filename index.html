@@ -8,7 +8,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/lucide@latest/dist/ucide/font.css">
   <style>
-    /* Reset e estilos base */
+
     * {
       margin: 0;
       padding: 0;
@@ -49,7 +49,7 @@
       font-weight: 700;
     }
     
-    /* Animações */
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -79,7 +79,7 @@
       100% { background-position: 0% 50%; }
     }
     
-    /* Cabeçalho */
+
     header {
       background: rgba(30, 41, 59, 0.8);
       backdrop-filter: blur(10px);
@@ -116,7 +116,7 @@
       font-size: 1rem;
     }
     
-    /* Hero Section */
+
     .hero {
       padding: 10rem 0 5rem;
       position: relative;
@@ -240,7 +240,7 @@
       box-shadow: 0 0 30px rgba(99, 102, 241, 0.5);
     }
     
-    /* Galeria de Screenshots com Ícones */
+
     .screenshots {
       padding: 6rem 0;
       background: rgba(0, 0, 0, 0.2);
@@ -305,7 +305,7 @@
       box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
     }
     
-    /* Ícones */
+
     .screenshot-icon {
       display: flex;
       justify-content: center;
@@ -323,7 +323,7 @@
       transition: filter 0.3s ease;
     }
     
-    /* Título com gradiente */
+
     .screenshot-caption h4 {
       font-size: 1.3rem;
       margin-bottom: 0.5rem;
@@ -334,19 +334,19 @@
       transition: filter 0.3s ease;
     }
     
-    /* Descrição */
+
     .screenshot-caption p {
       color: var(--text-secondary);
       font-size: 0.95rem;
     }
     
-    /* Glow no hover */
+
     .screenshot-card:hover .screenshot-icon i,
     .screenshot-card:hover .screenshot-caption h4 {
       filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.6));
     }
     
-    /* Características */
+
     .features {
       padding: 6rem 0;
       position: relative;
@@ -433,7 +433,7 @@
       font-size: 1rem;
     }
     
-    /* Planos */
+
     .planos {
       padding: 6rem 0;
       background: rgba(0, 0, 0, 0.2);
@@ -522,7 +522,7 @@
       font-weight: bold;
     }
     
-    /* Garantia */
+
     .guarantee {
       background: rgba(99, 102, 241, 0.1);
       border-radius: 12px;
@@ -545,7 +545,7 @@
       font-size: 1rem;
     }
     
-    /* Botões */
+
     .btn-link {
       display: inline-block;
       background: var(--gradient);
@@ -597,7 +597,7 @@
       box-shadow: 0 15px 25px rgba(37, 211, 102, 0.4);
     }
     
-    /* Feedbacks */
+
     .feedbacks {
       padding: 6rem 0;
       position: relative;
@@ -680,7 +680,7 @@
       margin-top: 1.5rem;
     }
     
-    /* Formulário */
+
     .feedback-form {
       padding: 6rem 0;
       background: rgba(0, 0, 0, 0.2);
@@ -727,7 +727,7 @@
       resize: vertical;
     }
     
-    /* FAQ Section */
+
     .faq {
       padding: 6rem 0;
       position: relative;
@@ -791,7 +791,7 @@
       padding: 0 1.5rem 1.5rem;
     }
     
-    /* Rodapé */
+
     footer {
       background: var(--dark-card);
       text-align: center;
@@ -836,8 +836,7 @@
     .social-links a:hover {
       transform: translateY(-3px);
     }
-    
-    /* Back to Top Button */
+
     .back-to-top {
       position: fixed;
       bottom: 30px;
@@ -867,7 +866,7 @@
       transform: translateY(-3px);
     }
     
-    /* Responsividade */
+
     @media (max-width: 768px) {
       .hero h2 {
         font-size: 2.5rem;
@@ -904,7 +903,7 @@
       }
     }
     
-    /* Utilitários */
+
     .text-center {
       text-align: center;
     }
@@ -917,7 +916,7 @@
       margin-bottom: 2rem;
     }
     
-    /* Scroll personalizado */
+
     ::-webkit-scrollbar {
       width: 10px;
     }
@@ -937,7 +936,6 @@
   </style>
 </head>
 <body>
-  <!-- Cabeçalho -->
   <header>
     <div class="container">
       <div>
@@ -947,7 +945,7 @@
     </div>
   </header>
 
-<!-- Hero Section -->
+
 <section class="hero">
   <div class="container">
     <div class="hero-content">
@@ -963,7 +961,7 @@
   </div>
 </section>
 
-  <!-- Cards com Ícones -->
+
   <section class="screenshots">
     <div class="container">
       <h2 class="text-center">Recursos Visuais</h2>
@@ -1003,7 +1001,7 @@
     </div>
   </section>
 
-  <!-- Características -->
+
   <section class="features">
     <div class="container">
       <h2 class="text-center">Recursos Incríveis</h2>
@@ -1037,7 +1035,7 @@
     </div>
   </section>
 
-  <!-- Planos -->
+
   <section class="planos" id="planos">
     <div class="container">
       <h2 class="text-center">Adquira Agora</h2>
@@ -1070,7 +1068,7 @@
     </div>
   </section>
 
-  <!-- Feedbacks -->
+
   <section class="feedbacks">
     <div class="container">
       <h2 class="text-center">O que nossos clientes dizem</h2>
@@ -1104,7 +1102,7 @@
     </div>
   </section>
 
-  <!-- FAQ Section -->
+
   <section class="faq">
     <div class="container">
       <h2 class="text-center">Perguntas Frequentes</h2>
@@ -1154,7 +1152,7 @@
     </div>
   </section>
 
-  <!-- Formulário -->
+
   <section class="feedback-form">
     <div class="container">
       <h2 class="text-center">Deixe seu feedback</h2>
@@ -1169,13 +1167,13 @@
     </div>
   </section>
 
-  <!-- Back to Top Button -->
+
   <a href="#" class="back-to-top">
     <i class="fas fa-arrow-up"></i>
   </a>
 
   <script>
-    // Animação de aparição ao scroll
+
     document.addEventListener('DOMContentLoaded', function() {
       const animatedElements = document.querySelectorAll('.screenshot-card, .feature-card, .feedback-card');
       
@@ -1193,7 +1191,7 @@
         observer.observe(element);
       });
       
-      // Video play functionality
+
       const videoOverlay = document.getElementById('videoOverlay');
       const demoVideo = document.getElementById('demoVideo');
       
@@ -1204,7 +1202,7 @@
         });
       }
       
-      // FAQ accordion functionality
+
       const faqItems = document.querySelectorAll('.faq-item');
       
       faqItems.forEach(item => {
@@ -1215,7 +1213,7 @@
         });
       });
       
-      // Back to top button
+
       const backToTopButton = document.querySelector('.back-to-top');
       
       window.addEventListener('scroll', () => {
@@ -1234,3 +1232,4 @@
   </script>
 </body>
 </html>
+
